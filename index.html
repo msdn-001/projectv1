@@ -5,19 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="L'outil de prospection nouvelle génération pour les agences SEO francophones. Lancement septembre 2026.">
   <title>Le futur de la prospection pour agences SEO</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%23a78bfa%22/><stop offset=%22100%25%22 stop-color=%22%2360a5fa%22/></linearGradient></defs><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22url(%23g)%22/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%231e40af%22/><stop offset=%22100%25%22 stop-color=%22%233b82f6%22/></linearGradient></defs><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22url(%23g)%22/></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      cursor: default;
+      overflow-x: hidden;
+    }
     .gradient-text {
-      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
+      background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 50%, #3b82f6 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .glow {
-      box-shadow: 0 0 80px rgba(167, 139, 250, 0.15);
+      box-shadow: 0 0 80px rgba(59, 130, 246, 0.2);
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -28,16 +32,39 @@
     .delay-2 { animation-delay: 0.4s; opacity: 0; }
     .delay-3 { animation-delay: 0.6s; opacity: 0; }
     .delay-4 { animation-delay: 0.8s; opacity: 0; }
+
+    /* Glow qui suit le curseur */
+    .cursor-glow {
+      position: fixed;
+      pointer-events: none;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(30, 64, 175, 0.05) 35%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      filter: blur(40px);
+      will-change: transform;
+    }
+
+    /* Sur mobile, on désactive l'effet (pas de souris) */
+    @media (hover: none) {
+      .cursor-glow { display: none; }
+    }
   </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen">
-  <div class="absolute inset-0 bg-gradient-to-br from-purple-950/20 via-zinc-950 to-blue-950/20"></div>
+<body class="bg-slate-950 text-slate-100 min-h-screen relative">
+  <!-- Glow qui suit le curseur -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-slate-950 to-slate-950 pointer-events-none"></div>
   
-  <div class="relative max-w-3xl mx-auto px-6 py-20 md:py-32 text-center flex flex-col items-center">
+  <div class="relative max-w-3xl mx-auto px-6 py-20 md:py-32 text-center flex flex-col items-center" style="z-index: 10;">
     
-    <div class="fade-in delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm mb-8">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="text-xs text-zinc-400">Accès anticipé · Lancement septembre 2026</span>
+    <div class="fade-in delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-800 bg-slate-900/50 backdrop-blur-sm mb-8">
+      <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+      <span class="text-xs text-slate-400">Accès anticipé · Lancement septembre 2026</span>
     </div>
 
     <h1 class="fade-in delay-2 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
@@ -45,7 +72,7 @@
       <span class="gradient-text">par mois, en pilote automatique.</span>
     </h1>
 
-    <p class="fade-in delay-3 text-lg md:text-xl text-zinc-400 mb-12 max-w-2xl leading-relaxed">
+    <p class="fade-in delay-3 text-lg md:text-xl text-slate-400 mb-12 max-w-2xl leading-relaxed">
       L'outil de prospection IA pensé pour les agences SEO et content francophones. Trouve, personnalise, envoie. Pendant que tu dors.
     </p>
 
@@ -55,19 +82,19 @@
         id="email"
         required
         placeholder="ton@agence.com"
-        class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition"
+        class="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
       >
       <input
         type="text"
         id="agency_name"
         required
         placeholder="Nom de ton agence"
-        class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition"
+        class="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
       >
       <select
         id="agency_size"
         required
-        class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition"
+        class="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
       >
         <option value="">Taille de l'équipe</option>
         <option value="solo">Solo (1 personne)</option>
@@ -79,14 +106,14 @@
       <button
         type="submit"
         id="submit-btn"
-        class="w-full px-4 py-3 bg-white text-zinc-950 rounded-lg font-semibold hover:bg-zinc-200 transition glow"
+        class="w-full px-4 py-3 bg-white text-slate-950 rounded-lg font-semibold hover:bg-slate-200 transition glow"
       >
         Rejoindre la waitlist →
       </button>
     </form>
 
-    <div id="success" class="hidden mt-6 p-4 bg-emerald-950/50 border border-emerald-800 rounded-lg max-w-md">
-      <p class="text-emerald-300 text-sm">
+    <div id="success" class="hidden mt-6 p-4 bg-blue-950/50 border border-blue-800 rounded-lg max-w-md">
+      <p class="text-blue-300 text-sm">
         ✓ Tu es sur la liste. Tu recevras un email pour l'accès anticipé avant le lancement public.
       </p>
     </div>
@@ -95,14 +122,37 @@
       <p class="text-red-300 text-sm" id="error-msg"></p>
     </div>
 
-    <p class="fade-in delay-4 text-xs text-zinc-600 mt-16">
+    <p class="fade-in delay-4 text-xs text-slate-600 mt-16">
       RGPD-compliant · Données hébergées en UE · Aucun spam, jamais.
     </p>
 
   </div>
 
   <script>
-    const SUPABASE_URL = 'https://jlxuqeuvpvovzvlzyiey.supabase.co';
+    // Glow qui suit le curseur (smooth)
+    const glow = document.getElementById('cursor-glow');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let glowX = mouseX;
+    let glowY = mouseY;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateGlow() {
+      // Lerp pour mouvement smooth (suivi avec inertie)
+      glowX += (mouseX - glowX) * 0.1;
+      glowY += (mouseY - glowY) * 0.1;
+      glow.style.left = glowX + 'px';
+      glow.style.top = glowY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // Form Supabase
+    const SUPABASE_URL = 'https://jlxuqeuvpvovzvlzyiey.supabase.co/rest/v1/';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpseHVxZXV2cHZvdnp2bHp5aWV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1NzcyMjUsImV4cCI6MjA5MzE1MzIyNX0.tL-ArcaxHQbO9hGonmNWg5-E-HzuC5nggTQRW1C-Jcc';
 
     document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
